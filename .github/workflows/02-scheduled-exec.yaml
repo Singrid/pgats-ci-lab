@@ -1,10 +1,10 @@
-#Ci de Nivel 01 - Disparo manual a partir de 1 clique
+#Ci de Nivel 01 - Disparo Agendado
 
 # Nome do nosso 'pipeline'
 name: 'Execução Agendada'
 
 # regras de disparo (gatilho/triggers)
-# gatilho de exec manual = workflow_dispatch
+# gatilho de exec agendado = schedule
 
 on:
   schedule:
@@ -14,31 +14,31 @@ on:
 jobs:
   e2e-tests:
   # maquina que o job vai executar
-  runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-  # passos do script de build
-  steps:
-    #clone do projeto
-    - uses: actions/checkout@v4
+    # passos do script de build
+    steps:
+      #clone do projeto
+      - uses: actions/checkout@v4
 
-    # instalacao do node
-    - uses: actions/setup-node@v4
-      with:
-        node-version: latest
+      # instalacao do node
+      - uses: actions/setup-node@v4
+        with:
+          node-version: latest
 
-    #instalacao do yaml
-    - name: Instalando o yaml
-      run: npm install -g yaml
+      #instalacao do yaml
+      - name: Instalando o yaml
+        run: npm install -g yaml
 
-    #instalacao das dependencias
-    - name: Instalando as dependencias
-      run: yaml
+      #instalacao das dependencias
+      - name: Instalando as dependencias
+        run: yaml
 
-    #instalacao das playright
-    - name: Instalando playright
-      run: yarn playwright install
+      #instalacao das playright
+      - name: Instalando playright
+        run: yarn playwright install
 
-    # executar os testes e2e
-    - name: Executando os Testes E2E
-      run: yarn run e2e
-  
+      # executar os testes e2e
+      - name: Executando os Testes E2E
+        run: yarn run e2e
+    

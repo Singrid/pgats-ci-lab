@@ -12,32 +12,32 @@ on:
 # trabalhos/tarefas dentro do pipeline = jobs
 jobs:
   e2e-tests:
-  # maquina que o job vai executar
+    # maquina que o job vai executar
     runs-on: ubuntu-latest
 
   # passos do script de build
-  steps:
+    steps:
     #clone do projeto
-    - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
     # instalacao do node
-    - uses: actions/setup-node@v4
-      with:
-        node-version: latest
+      - uses: actions/setup-node@v4
+        with:
+         node-version: latest
 
     #instalacao do yaml
-    - name: Instalando o yaml
-      run: npm install -g yaml
+      - name: Instalando o yaml
+        run: npm install -g yaml
 
     #instalacao das dependencias
-    - name: Instalando as dependencias
-      run: yaml
+      - name: Instalando as dependencias
+        run: yaml
 
     #instalacao das playright
-    - name: Instalando playright
-      run: yarn playwright install
+      - name: Instalando playright
+        run: yarn playwright install
 
     # executar os testes e2e
-    - name: Executando os Testes E2E
-      run: yarn run e2e
+      - name: Executando os Testes E2E
+        run: yarn run e2e
   
